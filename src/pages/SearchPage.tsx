@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import SearchForm from '../Search/SearchForm';
+import SearchForm from '../Search/components/SearchForm';
 import SearchInput from '../Search/components/SearchInput';
 import SearchButton from '../Search/components/SearchButton';
+import SearchPreview from '../Search/components/SearchPreview';
 
 function SearchPage() {
   return (
@@ -11,12 +12,14 @@ function SearchPage() {
         <SearchInput />
         <SearchButton />
       </SearchForm>
+      <SearchPreview />
     </Container>
   );
 }
 
 const Title = styled.h1`
   margin: 200px 0 30px 0;
+  font-size: 3.2rem;
 `;
 
 const Container = styled.div`

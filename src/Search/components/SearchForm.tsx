@@ -11,7 +11,7 @@ function SearchForm({ children }: SearchFormProps) {
 
 const SearchFormBlock = styled.form`
   background-color: #4654e1;
-  width: 300px;
+  width: 340px;
   height: 44px;
   border-radius: 5px;
   display: flex;

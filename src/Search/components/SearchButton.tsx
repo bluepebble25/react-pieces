@@ -21,9 +21,9 @@ const SearchButtonBlock = styled.button`
 const SVG = styled.svg`
   color: #fff;
   fill: currentColor;
-  width: 24px;
-  height: 24px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
 `;
 
 export default SearchButton;
