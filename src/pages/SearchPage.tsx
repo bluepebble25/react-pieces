@@ -1,18 +1,27 @@
+import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+
 import SearchForm from '../Search/components/SearchForm';
-import SearchInput from '../Search/components/SearchInput';
-import SearchButton from '../Search/components/SearchButton';
 import SearchPreview from '../Search/components/SearchPreview';
+import useFetchCities from '../Search/hooks/useFetchCities';
 
 function SearchPage() {
+  const [query, setQuery] = useState('');
+  const cityList = useFetchCities();
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  console.log(cityList);
+  console.log('입력값:', query);
+
   return (
     <Container>
       <Title>Search for Cities</Title>
-      <SearchForm>
-        <SearchInput />
-        <SearchButton />
-      </SearchForm>
-      <SearchPreview />
+      <SearchForm onChangeInput={onChangeInput} />
+      <SearchPreview query={query} cityList={cityList} />
     </Container>
   );
 }

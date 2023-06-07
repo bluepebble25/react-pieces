@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import SearchInput from './SearchInput';
+import SearchButton from './SearchButton';
+
 interface SearchFormProps {
-  children: React.ReactNode;
+  onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-function SearchForm({ children }: SearchFormProps) {
-  return <SearchFormBlock>{children}</SearchFormBlock>;
+function SearchForm({ onChangeInput }: SearchFormProps) {
+  return (
+    <SearchFormBlock>
+      <SearchInput onChangeInput={onChangeInput} />
+      <SearchButton />
+    </SearchFormBlock>
+  );
 }
 
 const SearchFormBlock = styled.form`

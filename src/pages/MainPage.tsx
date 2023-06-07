@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function MainPage() {
   return (
     <div>
-      <ul>
+      <ul style={{ fontSize: '1.8rem' }}>
         <li>
           <Link to="/search">SearchPage</Link>
         </li>

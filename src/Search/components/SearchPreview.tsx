@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function SearchPreview() {
+interface SearchPreviewProps {
+  query: string;
+  cityList: { [key: string]: string[] };
+}
+
+function SearchPreview({ query, cityList }: SearchPreviewProps) {
+  const [filteredResult, setFilteredResult] = useState([]);
+
+  const filterCity = () => {
+    // state를 돌며 하위의 도시 중 일치하는 것들을 배열에 담아 반환한다. => 이중 map 사용
+    const states = Object.keys(cityList);
+    const matchedResults: string[] = [];
+    states.forEach((state) => {
+      cityList[state].forEach((city) => {
+        if (query === '') {
+          return;
+        } else if (city.toLowerCase().startsWith(query.toLowerCase())) {
+          matchedResults.push(city);
+        }
+      });
+    });
+
+    console.log('일치', matchedResults);
+  };
+
+  filterCity();
+
   return (
     <SearchPreviewList>
       <SearchPreviewItem>

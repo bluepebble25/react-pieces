@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function SearchInput() {
-  return <SearchInputBlock />;
+interface SearchInputProps {
+  onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+function SearchInput({ onChangeInput }: SearchInputProps) {
+  return <SearchInputBlock onChange={onChangeInput} />;
 }
 
 const SearchInputBlock = styled.input`
