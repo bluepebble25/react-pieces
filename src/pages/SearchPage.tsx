@@ -6,6 +6,8 @@ import SearchForm from '../Search/components/SearchForm';
 import SearchPreview from '../Search/components/SearchPreview';
 import useFetchCities from '../Search/hooks/useFetchCities';
 
+import { filterCity } from '../Search/_lib/utils';
+
 function SearchPage() {
   const [query, setQuery] = useState('');
   const cityList = useFetchCities();
@@ -21,7 +23,7 @@ function SearchPage() {
     <Container>
       <Title>Search for Cities</Title>
       <SearchForm onChangeInput={onChangeInput} />
-      <SearchPreview query={query} cityList={cityList} />
+      <SearchPreview previewList={filterCity(cityList, query)} />
     </Container>
   );
 }
