@@ -10,7 +10,7 @@ export const filterCity = (
       if (query === '') {
         return;
       } else if (city.toLowerCase().startsWith(query.toLowerCase())) {
-        matchedResults.push(city);
+        matchedResults.push(`${state} > ${city}`);
       }
     });
   });
