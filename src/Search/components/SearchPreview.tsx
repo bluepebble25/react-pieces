@@ -20,7 +20,7 @@ function SearchPreview({ previewList }: SearchPreviewProps) {
 
 const SearchPreviewList = styled.ul`
   width: 340px;
-  height: 300px;
+  max-height: 300px;
   background-color: #fcfcfc;
   border-radius: 0 0 5px 5px;
   padding: 5px 0;

@@ -6,22 +6,27 @@ import SearchButton from './SearchButton';
 
 interface SearchFormProps {
   onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
+  hasQuery: boolean;
 }
 
-function SearchForm({ onChangeInput }: SearchFormProps) {
+interface SerachFormBlock {
+  hasQuery: boolean;
+}
+
+function SearchForm({ onChangeInput, hasQuery }: SearchFormProps) {
   return (
-    <SearchFormBlock>
+    <SearchFormBlock hasQuery={hasQuery}>
       <SearchInput onChangeInput={onChangeInput} />
       <SearchButton />
     </SearchFormBlock>
   );
 }
 
-const SearchFormBlock = styled.form`
+const SearchFormBlock = styled.form<SerachFormBlock>`
   background-color: #4654e1;
   width: 340px;
   height: 44px;
-  border-radius: 5px;
+  border-radius: ${(props) => (props.hasQuery ? '5px 5px 0 0' : '5px')};
   display: flex;
   flex-direction: row;
   align-items: center;

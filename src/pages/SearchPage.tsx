@@ -22,8 +22,11 @@ function SearchPage() {
   return (
     <Container>
       <Title>Search for Cities</Title>
-      <SearchForm onChangeInput={onChangeInput} />
-      <SearchPreview previewList={filterCity(cityList, query)} />
+      <SearchForm
+        hasQuery={query ? true : false}
+        onChangeInput={onChangeInput}
+      />
+      {query && <SearchPreview previewList={filterCity(cityList, query)} />}
     </Container>
   );
 }
