@@ -11,11 +11,17 @@ function SearchPreview({ cityList, query }: SearchPreviewProps) {
   const previewList = filterCity(cityList, query);
   return (
     <SearchPreviewList>
-      {previewList.map((item, index) => (
-        <SearchPreviewItem key={index}>
-          <p>{item}</p>
+      {previewList.length === 0 ? (
+        <SearchPreviewItem>
+          <p>No Matching Results</p>
         </SearchPreviewItem>
-      ))}
+      ) : (
+        previewList.map((item, index) => (
+          <SearchPreviewItem key={index}>
+            <p>{item}</p>
+          </SearchPreviewItem>
+        ))
+      )}
     </SearchPreviewList>
   );
 }
