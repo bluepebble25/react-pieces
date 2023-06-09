@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import SearchForm from '../Search/components/SearchForm';
@@ -6,15 +6,21 @@ import SearchPreview from '../Search/components/SearchPreview';
 import useFetchCities from '../Search/hooks/useFetchCities';
 
 import useDebounce from '../Search/hooks/useDebounce';
+import { filterCity } from '../Search/_lib/utils';
 
 function SearchPage() {
   const [tmpQuery, setTmpQuery] = useState(''); // tmpQuery 값을 debounce한 후 query에 set함
+  const [previewList, setPreviewList] = useState<string[]>([]);
   const query = useDebounce(tmpQuery, 500);
   const cityList = useFetchCities();
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTmpQuery(e.target.value);
   };
+
+  useEffect(() => {
+    setPreviewList(filterCity(cityList, query));
+  }, [query, cityList]);
 
   return (
     <Container>
@@ -23,7 +29,7 @@ function SearchPage() {
         hasQuery={query ? true : false}
         onChangeInput={onChangeInput}
       />
-      {query && <SearchPreview cityList={cityList} query={query} />}
+      {query && <SearchPreview previewList={previewList} />}
     </Container>
   );
 }

@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { filterCity } from '../_lib/utils';
 
 interface SearchPreviewProps {
-  cityList: { [key: string]: string[] };
-  query: string;
+  previewList: string[];
 }
 
-function SearchPreview({ cityList, query }: SearchPreviewProps) {
-  const previewList = filterCity(cityList, query);
+function SearchPreview({ previewList }: SearchPreviewProps) {
   return (
     <SearchPreviewList>
       {previewList.length === 0 ? (
