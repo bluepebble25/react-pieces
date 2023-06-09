@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { filterCity } from '../_lib/utils';
 
 interface SearchPreviewProps {
-  previewList: string[];
+  cityList: { [key: string]: string[] };
+  query: string;
 }
 
-function SearchPreview({ previewList }: SearchPreviewProps) {
-  console.log('일치하는 결과:', previewList);
+function SearchPreview({ cityList, query }: SearchPreviewProps) {
+  const previewList = filterCity(cityList, query);
   return (
     <SearchPreviewList>
       {previewList.map((item, index) => (
@@ -51,4 +53,4 @@ const SearchPreviewItem = styled.li`
   }
 `;
 
-export default SearchPreview;
+export default React.memo(SearchPreview);
