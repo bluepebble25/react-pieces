@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 interface SearchInputProps {
   onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
-function SearchInput({ onChangeInput }: SearchInputProps) {
-  return <SearchInputBlock onChange={onChangeInput} />;
+function SearchInput({ onChangeInput, onKeyDown }: SearchInputProps) {
+  return <SearchInputBlock onChange={onChangeInput} onKeyDown={onKeyDown} />;
 }
 
 const SearchInputBlock = styled.input`

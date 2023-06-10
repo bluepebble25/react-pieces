@@ -6,6 +6,7 @@ import SearchButton from './SearchButton';
 
 interface SearchFormProps {
   onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
   hasQuery: boolean;
 }
 
@@ -13,10 +14,10 @@ interface SerachFormBlock {
   hasQuery: boolean;
 }
 
-function SearchForm({ onChangeInput, hasQuery }: SearchFormProps) {
+function SearchForm({ onChangeInput, onKeyDown, hasQuery }: SearchFormProps) {
   return (
     <SearchFormBlock hasQuery={hasQuery}>
-      <SearchInput onChangeInput={onChangeInput} />
+      <SearchInput onChangeInput={onChangeInput} onKeyDown={onKeyDown} />
       <SearchButton />
     </SearchFormBlock>
   );
