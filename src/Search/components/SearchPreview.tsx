@@ -5,14 +5,19 @@ import styled from 'styled-components';
 interface SearchPreviewProps {
   previewList: string[];
   currIndex: number;
+  selectRef: React.RefObject<HTMLLIElement>;
 }
 
 interface SearchPreviewItemProps {
   isFocused?: boolean;
-  selectRef?: React.Ref<HTMLLIElement>;
+  selectRef?: React.RefObject<HTMLLIElement>;
 }
 
-function SearchPreview({ previewList, currIndex }: SearchPreviewProps) {
+function SearchPreview({
+  previewList,
+  currIndex,
+  selectRef,
+}: SearchPreviewProps) {
   return (
     <SearchPreviewList>
       {previewList.length === 0 ? (
@@ -22,15 +27,20 @@ function SearchPreview({ previewList, currIndex }: SearchPreviewProps) {
       ) : (
         previewList.map((item, index) => {
           const location = item.split('>');
+          const isFocused = index === currIndex;
           return (
-            <Link
-              to={`https://www.google.com/maps/place/${location[0]}+${location[1]}`}
-              target="_blank"
+            <SearchPreviewItem
+              key={index}
+              isFocused={isFocused}
+              ref={isFocused ? selectRef : null}
             >
-              <SearchPreviewItem key={index} isFocused={index === currIndex}>
+              <Link
+                to={`https://www.google.com/maps/place/${location[0]}+${location[1]}`}
+                target="_blank"
+              >
                 <p>{item}</p>
-              </SearchPreviewItem>
-            </Link>
+              </Link>
+            </SearchPreviewItem>
           );
         })
       )}

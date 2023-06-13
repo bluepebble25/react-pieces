@@ -15,8 +15,12 @@ interface SerachFormBlock {
 }
 
 function SearchForm({ onChangeInput, onKeyDown, hasQuery }: SearchFormProps) {
+  const onSubmitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <SearchFormBlock hasQuery={hasQuery}>
+    <SearchFormBlock hasQuery={hasQuery} onSubmit={onSubmitHandler}>
       <SearchInput onChangeInput={onChangeInput} onKeyDown={onKeyDown} />
       <SearchButton />
     </SearchFormBlock>

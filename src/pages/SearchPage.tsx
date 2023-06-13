@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import SearchForm from '../Search/components/SearchForm';
@@ -15,14 +15,26 @@ function SearchPage() {
   const query = useDebounce(tmpQuery, 500);
   const cityList = useFetchCities();
 
+  const selectRef = useRef<HTMLLIElement>(null);
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTmpQuery(e.target.value);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const selectedList = selectRef.current;
+      selectedList?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+
+    handleScroll();
+  }, [currIndex]);
 
   const handleArrowKey = (e: React.KeyboardEvent) => {
     const DOWN = 'ArrowDown';
     const UP = 'ArrowUp';
     const ESCAPE = 'Escape';
+    const ENTER = 'Enter';
 
     if (previewList.length > 0) {
       switch (e.key) {
@@ -39,6 +51,12 @@ function SearchPage() {
           break;
         case ESCAPE:
           setCurrIndex(-1);
+          break;
+        case ENTER:
+          if (currIndex >= 0) {
+            selectRef.current &&
+              (selectRef.current.children[0] as HTMLElement).click();
+          }
           break;
       }
     }
@@ -57,7 +75,11 @@ function SearchPage() {
         onKeyDown={handleArrowKey}
       />
       {query && (
-        <SearchPreview previewList={previewList} currIndex={currIndex} />
+        <SearchPreview
+          previewList={previewList}
+          currIndex={currIndex}
+          selectRef={selectRef}
+        />
       )}
     </Container>
   );
