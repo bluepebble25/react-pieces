@@ -5,7 +5,14 @@ interface LoadingProps {
 }
 
 function Loading({ pageEnd }: LoadingProps) {
-  return <div ref={pageEnd}>...Loading</div>;
+  return (
+    <div
+      ref={pageEnd}
+      style={{ fontSize: '2rem', marginTop: '16px', textAlign: 'center' }}
+    >
+      ...Loading
+    </div>
+  );
 }
 
 export default Loading;

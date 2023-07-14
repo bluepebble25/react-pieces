@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
@@ -11,7 +11,7 @@ function CardList({ images }: CardListProps) {
     <CardListBlock>
       {images.map((image, i) => {
         const imgUrl = image.urls.small;
-        return <Card imgUrl={imgUrl} />;
+        return <Card key={i} imgUrl={imgUrl} />;
       })}
     </CardListBlock>
   );
