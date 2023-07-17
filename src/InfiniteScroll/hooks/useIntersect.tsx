@@ -9,7 +9,7 @@ function useIntersect(
   onIntersect: IntersectHandler,
   options?: IntersectionObserverInit
 ) {
-  const ref = useRef<HTMLElement>(null); // target 요소를 저장할 ref
+  const ref = useRef<HTMLDivElement>(null); // target 요소를 저장할 ref
 
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
